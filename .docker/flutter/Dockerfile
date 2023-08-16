@@ -52,7 +52,9 @@ RUN unzip sdk-tools.zip && rm sdk-tools.zip
 RUN mv tools Android/sdk/tools
 RUN cd Android/sdk/tools/bin && yes | ./sdkmanager --licenses
 RUN cd Android/sdk/tools/bin && ./sdkmanager "build-tools;29.0.2" "patcher;v4" "platform-tools" "platforms;android-29" "sources;android-29"
+RUN cd Android/sdk/tools/bin && ./sdkmanager --install "cmdline-tools;latest"
 ENV PATH=$PATH:/usr/local/Android/sdk/platform-tools
+
 
 ###################
 # Install Dart    #
@@ -81,10 +83,6 @@ RUN dart pub global activate fvm --verbose && \
     # 初回ビルドの時のみ
     # fvm flutter precache --verbose && \
     fvm flutter doctor --verbose
-
-# Android cmdline-toolsのインストール
-RUN /usr/local/Android/sdk/tools/bin/sdkmanager --install "cmdline-tools;latest"
-ARG PATH=/root/.pub-cache/bin:$PATH
 
 # Clean up
 RUN apt-get clean -y && \
