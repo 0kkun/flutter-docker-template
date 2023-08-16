@@ -1,11 +1,9 @@
 # build時に使用するARGを定義している部分
-ARG ubuntu_version
 ARG timezone
 ARG web_server_port
 ARG app_code_path_container
 
-# https://hub.docker.com/_/ubuntu/
-FROM ubuntu:${ubuntu_version}
+FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL=ja_JP.UTF-8
@@ -42,7 +40,9 @@ RUN apt-get update && \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# AndroidをビルドできるようにAndroidSDKを入れる
+#######################
+# Install Android SDK #
+#######################
 WORKDIR /usr/local
 RUN mkdir -p Android/sdk
 ENV ANDROID_SDK_ROOT /usr/local/Android/sdk
@@ -52,24 +52,47 @@ RUN unzip sdk-tools.zip && rm sdk-tools.zip
 RUN mv tools Android/sdk/tools
 RUN cd Android/sdk/tools/bin && yes | ./sdkmanager --licenses
 RUN cd Android/sdk/tools/bin && ./sdkmanager "build-tools;29.0.2" "patcher;v4" "platform-tools" "platforms;android-29" "sources;android-29"
-ENV PATH "$PATH:/usr/local/Android/sdk/platform-tools"
+ENV PATH=$PATH:/usr/local/Android/sdk/platform-tools
 
-# Dartのインストール
-RUN sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
-RUN apt-get update && \
-    apt-get -y -q install \
-    dart \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+###################
+# Install Dart    #
+###################
+ARG DART_VERSION=3.0.5
+RUN mkdir -p /usr/share/man/man1 && \
+    apt-get update && apt-get install -y --no-install-recommends tzdata && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends bash ca-certificates clang cmake curl file git libglu1-mesa libgtk-3-dev ninja-build pkg-config unzip xz-utils zip && \
+    curl https://storage.googleapis.com/dart-archive/channels/stable/release/$DART_VERSION/sdk/dartsdk-linux-x64-release.zip -o /tmp/dart-sdk.zip && \
+    unzip /tmp/dart-sdk.zip -d /usr/lib && rm /tmp/dart-sdk.zip
 
-# Download Flutter SDK
-RUN git clone https://github.com/flutter/flutter.git
-ENV PATH "$PATH:/usr/local/flutter/bin"
 
-# Flutter Webが使用できるようにする
-RUN flutter config --enable-web
+###################
+# Install Flutter #
+###################
+ARG PATH=/usr/lib/dart-sdk/bin:$PATH
+ARG PATH=/root/.pub-cache/bin:$PATH
+ARG FLUTTER_VERSION=3.10.5
+RUN dart pub global activate fvm --verbose && \
+    fvm --version && \
+    fvm doctor --verbose && \
+    fvm install $FLUTTER_VERSION --verbose && \
+    fvm use --force $FLUTTER_VERSION --verbose && \
+    fvm flutter config --enable-web --enable-linux-desktop --enable-macos-desktop --enable-windows-desktop --enable-android --enable-ios --enable-fuchsia && \
+    # 初回ビルドの時のみ
+    # fvm flutter precache --verbose && \
+    fvm flutter doctor --verbose
 
-# Flutterの診断
-RUN flutter doctor
+# Android cmdline-toolsのインストール
+RUN /usr/local/Android/sdk/tools/bin/sdkmanager --install "cmdline-tools;latest"
+ARG PATH=/root/.pub-cache/bin:$PATH
+
+# Clean up
+RUN apt-get clean -y && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set paths
+ENV FVM_ROOT=/root/.pub-cache
+ENV PATH=$FVM_ROOT/bin:$PATH
 
 EXPOSE ${WEB_SERVER_PORT}

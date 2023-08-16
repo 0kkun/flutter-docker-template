@@ -1,0 +1,42 @@
+{
+    "name": "flutter-docker-template",
+
+    // この例ではdocker-composeを利用しているので、そのパスを指定している
+    // docker composeのcontextは .devcontainer になるらしい
+    "dockerComposeFile": "compose.yml",
+
+    // devcontainerでshellなど？で使用するdocker composeのservice名
+    "service": "flutter",
+    // 指定したserviceコンテナのworkspaceフォルダ
+    "workspaceFolder": "/workspace",
+    // 指定したポートが始めからvscodeのポート機能で手元環境にforwardされるようになる
+    "forwardPorts": [8888],
+
+    // https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/script-library/docs
+    // にあるスクリプトをdevcontainerで実行できるプラグイン機構
+    // 今回の例では見ての通りdocker-in-dockerの設定を行ってくれるfeatureを設定してる
+    // "features": {
+    //   "docker-in-docker": {
+    //     "version": "latest",
+    //     "dockerDashComposeVersion": "v2"
+    //   }
+    // },
+
+    // devcontainerとして開くvscode側の設定カスタマイズ
+    "customizations": {
+        "vscode": {
+            "settings": {
+
+            },
+            // devcontainerに自動でインストールするvscode extention
+            // extentionのページの歯車アイコンをクリックすると出てくる「拡張機能 ID のコピー」というやつからここに貼るIDを知ることができる
+            "extensions": [
+                "dart-code.dart-code",
+                "dart-code.flutter"
+            ]
+        }
+    },
+
+    // host側の実行ユーザー(だと思う)で、devcontainerで開いたフォルダのファイルはこのユーザーに権限が無いと保存などができない
+    "remoteUser": "vscode"
+}

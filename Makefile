@@ -54,17 +54,35 @@ app:
 
 .PHONY: run-web
 run-web:
-	$(DCE) flutter bash -c "cd workspace && flutter run -d web-server --web-port=8888 --web-hostname 0.0.0.0"
+	@make clean
+	@make pub-get
+	@make run
 
 .PHONY: web-build
 web-build:
-	$(DCE) flutter bash -c "cd workspace && flutter build web"
+	$(DCE) flutter bash -c "cd workspace && fvm flutter build web"
 
 .PHONY: upgrade
 upgrade:
-	$(DCE) flutter bash -c "cd workspace && flutter upgrade"
+	$(DCE) flutter bash -c "cd workspace && fvm flutter upgrade"
 
 .PHONY: doctor
 doctor:
-	$(DCE) flutter bash -c "cd workspace && flutter doctor"
+	$(DCE) flutter bash -c "cd workspace && fvm flutter doctor"
+
+.PHONY: run
+run:
+	$(DCE) flutter bash -c "cd workspace && fvm flutter run -d web-server --web-port=8888 --web-hostname 0.0.0.0"
+
+.PHONY: clean
+clean:
+	$(DCE) flutter bash -c "cd workspace && fvm flutter clean"
+
+.PHONY: pub-get
+pub-get:
+	$(DCE) flutter bash -c "cd workspace && fvm flutter pub get"
+
+.PHONY: doctor
+doctor:
+	$(DCE) flutter bash -c "cd workspace && fvm flutter doctor"
 
