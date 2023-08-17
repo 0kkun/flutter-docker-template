@@ -1,14 +1,15 @@
 {
-    "name": "flutter-docker-template",
+    "name": "Flutter Development",
 
     // この例ではdocker-composeを利用しているので、そのパスを指定している
     // docker composeのcontextは .devcontainer になるらしい
-    "dockerComposeFile": "compose.yml",
-
+    "dockerComposeFile": [
+        "compose.yml"
+    ],
     // devcontainerでshellなど？で使用するdocker composeのservice名
     "service": "flutter",
     // 指定したserviceコンテナのworkspaceフォルダ
-    "workspaceFolder": "/workspace",
+    "workspaceFolder": "/usr/local/workspace",
     // 指定したポートが始めからvscodeのポート機能で手元環境にforwardされるようになる
     "forwardPorts": [8888],
 
@@ -26,13 +27,15 @@
     "customizations": {
         "vscode": {
             "settings": {
-
             },
             // devcontainerに自動でインストールするvscode extention
             // extentionのページの歯車アイコンをクリックすると出てくる「拡張機能 ID のコピー」というやつからここに貼るIDを知ることができる
             "extensions": [
-                "dart-code.dart-code",
-                "dart-code.flutter"
+                "Dart-Code.flutter",
+                "davidwoo.flutter-auto-import",
+                "circlecodesolution.ccs-flutter-color",
+                "marcelovelasquez.flutter-tree",
+                "MarufHassan.flutter-snippets"
             ]
         }
     },

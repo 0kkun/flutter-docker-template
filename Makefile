@@ -60,29 +60,29 @@ run-web:
 
 .PHONY: web-build
 web-build:
-	$(DCE) flutter bash -c "cd workspace && fvm flutter build web"
+	$(DCE) flutter bash -c "fvm flutter build web"
 
 .PHONY: upgrade
 upgrade:
-	$(DCE) flutter bash -c "cd workspace && fvm flutter upgrade"
+	$(DCE) flutter bash -c "fvm flutter upgrade"
 
 .PHONY: doctor
 doctor:
-	$(DCE) flutter bash -c "cd workspace && fvm flutter doctor"
+	$(DCE) flutter bash -c "fvm flutter doctor"
 
 .PHONY: run
 run:
-	$(DCE) flutter bash -c "cd workspace && fvm flutter run -d web-server --web-port=8888 --web-hostname 0.0.0.0"
+	$(DCE) flutter bash -c "fvm flutter run -d web-server --web-port=8888 --web-hostname 0.0.0.0"
 
 .PHONY: clean
 clean:
-	$(DCE) flutter bash -c "cd workspace && fvm flutter clean"
+	$(DCE) flutter bash -c "fvm flutter clean"
 
 .PHONY: pub-get
 pub-get:
-	$(DCE) flutter bash -c "cd workspace && fvm flutter pub get"
+	$(DCE) flutter bash -c "fvm flutter pub get"
 
-.PHONY: doctor
-doctor:
-	$(DCE) flutter bash -c "cd workspace && fvm flutter doctor"
-
+# ローカルでライブラリが参照できない場合は以下を実行する
+.PHONY: pubget
+pubget:
+	cd src && fvm flutter pub get
