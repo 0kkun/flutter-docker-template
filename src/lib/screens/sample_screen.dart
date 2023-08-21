@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:workspace/providers/nickname_provider.dart';
 
-final nicknameProvider = StateProvider<String>(
-  (ref) {
-    return "ルビードッグ";
-  }
-);
+// final nicknameProvider = StateProvider<String>(
+//   (ref) {
+//     return "ルビードッグ";
+//   }
+// );
 
 // 状態管理確認用のメソッドたち
 tapA(WidgetRef ref) {

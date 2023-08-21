@@ -45,3 +45,39 @@ flutter build web
 ```
 $ flutter doctor
 ```
+
+## ディレクトリ構成
+
+```
+  lib/
+    main.dart
+    providers/
+    screens/
+      home_screen.dart
+      profile_screen.dart
+    widgets/
+      button_widget.dart
+      text_input_widget.dart
+    models/
+      user.dart
+      post.dart
+    services/
+      api_service.dart
+      auth_service.dart
+    utils/
+      constants.dart
+      helpers.dart
+  assets/
+    images/
+      image1.png
+      image2.png
+  test/
+    widget_tests/
+      button_widget_test.dart
+      text_input_widget_test.dart
+    integration_tests/
+      api_integration_test.dart
+  android/
+  ios/
+  web/
+```

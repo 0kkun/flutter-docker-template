@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:workspace/banana_counter.dart';
+import 'package:workspace/widjets/banana_counter.dart';
 import 'dart:developer';
 import 'package:logger/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:workspace/sample.dart';
+import 'package:workspace/models/tweet.dart';
+import 'package:workspace/screens/sample_screen.dart';
+import 'package:workspace/widjets/tweet_widjet.dart';
 
 final logger = Logger();
 
@@ -200,8 +202,46 @@ void main() {
   const app8 = MaterialApp(home: Sample());
 
   // プロバイダースコープで囲む
-  const scope = ProviderScope(child: app8);
+  const scopedApp = ProviderScope(child: app8);
 
   // スコープで囲まれたアプリを動かす
-  runApp(scope);
+  // runApp(scopedApp);
+
+  // ******************************************
+  // ** 無限スクロールと仮想スクロール (ListView) **
+
+  // モデルを作成
+  final models = [
+    Tweet('ルフィ', 'banana.jpeg', '頑張る', '2023/08/21'),
+    Tweet('チョッパー', 'chopper.jpeg', 'こんにちは', '2023/08/21'),
+    Tweet('ナミ', 'banana.jpeg', 'がんばれ', '2023/08/21'),
+    Tweet('ナミ', 'banana.jpeg', 'がんばれ', '2023/08/21'),
+    Tweet('ルフィ', 'banana.jpeg', '頑張る', '2023/08/21'),
+    Tweet('チョッパー', 'chopper.jpeg', 'こんにちは', '2023/08/21'),
+    Tweet('ナミ', 'banana.jpeg', 'がんばれ', '2023/08/21'),
+    Tweet('ナミ', 'banana.jpeg', 'がんばれ', '2023/08/21'),
+    Tweet('ルフィ', 'banana.jpeg', '頑張る', '2023/08/21'),
+    Tweet('チョッパー', 'chopper.jpeg', 'こんにちは', '2023/08/21'),
+    Tweet('ナミ', 'banana.jpeg', 'がんばれ', '2023/08/21'),
+    Tweet('ナミ', 'banana.jpeg', 'がんばれ', '2023/08/21'),
+    Tweet('ルフィ', 'banana.jpeg', '頑張る', '2023/08/21'),
+    Tweet('チョッパー', 'chopper.jpeg', 'こんにちは', '2023/08/21'),
+    Tweet('ナミ', 'banana.jpeg', 'がんばれ', '2023/08/21'),
+    Tweet('ナミ', 'banana.jpeg', 'がんばれ', '2023/08/21'),
+  ];
+
+  // ツイートウィジェットのリストを生成する
+  final list = ListView.builder(
+    itemCount: models.length,
+    itemBuilder: (context, index) => tweetWidget(models[index])
+  );
+
+  // 画面
+  final screen1 = Scaffold(body: list);
+
+  // アプリ
+  final app9 = MaterialApp(home: screen1);
+
+  // 起動
+  runApp(app9);
 }
