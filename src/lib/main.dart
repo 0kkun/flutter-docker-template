@@ -10,6 +10,7 @@ import 'package:workspace/widjets/tweet_widjet.dart';
 import 'package:workspace/app.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:workspace/screens/toggle_screen.dart';
+import 'package:workspace/screens/checkbox_screen.dart';
 
 final logger = Logger();
 
@@ -308,7 +309,13 @@ void main() {
 
   // ******************************************
   // ** スイッチウィジェット **
-  const app = MaterialApp(home: ToggleScreen());
-  const scope2 = ProviderScope(child: app);
-  runApp(scope2);
+  const app13 = MaterialApp(home: ToggleScreen());
+  const scope2 = ProviderScope(child: app13);
+  // runApp(scope2);
+
+  // ******************************************
+  // ** ラジオボタン **
+  const app14 = MaterialApp(home: CheckboxScreen());
+  const scope3 = ProviderScope(child: app14);
+  runApp(scope3);
 }
