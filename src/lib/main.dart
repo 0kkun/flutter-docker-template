@@ -9,6 +9,7 @@ import 'package:workspace/widjets/side_menu.dart';
 import 'package:workspace/widjets/tweet_widjet.dart';
 import 'package:workspace/app.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:workspace/screens/toggle_screen.dart';
 
 final logger = Logger();
 
@@ -303,5 +304,11 @@ void main() {
 
   // プロバイダースコープでアプリを囲む
   const scope = ProviderScope(child: app12);
-  runApp(scope);
+  // runApp(scope);
+
+  // ******************************************
+  // ** スイッチウィジェット **
+  const app = MaterialApp(home: ToggleScreen());
+  const scope2 = ProviderScope(child: app);
+  runApp(scope2);
 }
