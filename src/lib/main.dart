@@ -11,6 +11,7 @@ import 'package:workspace/app.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:workspace/screens/toggle_screen.dart';
 import 'package:workspace/screens/checkbox_screen.dart';
+import 'package:workspace/screens/progress_screen.dart';
 
 final logger = Logger();
 
@@ -317,5 +318,11 @@ void main() {
   // ** ラジオボタン **
   const app14 = MaterialApp(home: CheckboxScreen());
   const scope3 = ProviderScope(child: app14);
-  runApp(scope3);
+  // runApp(scope3);
+
+  // ******************************************
+  // ** プログレスサークル **
+  const app15 = MaterialApp(home: ProgressScreen());
+  const scope4 = ProviderScope(child: app15);
+  runApp(scope4);
 }
