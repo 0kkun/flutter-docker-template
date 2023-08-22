@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:workspace/widjets/banana_counter.dart';
-import 'dart:developer';
 import 'package:logger/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workspace/models/tweet.dart';
 import 'package:workspace/screens/sample_screen.dart';
 import 'package:workspace/widjets/tweet_widjet.dart';
+import 'package:workspace/app.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 final logger = Logger();
 
@@ -211,7 +212,7 @@ void main() {
   // ** 無限スクロールと仮想スクロール (ListView) **
 
   // モデルを作成
-  final models = [
+  final tweetModels = [
     Tweet('ルフィ', 'banana.jpeg', '頑張る', '2023/08/21'),
     Tweet('チョッパー', 'chopper.jpeg', 'こんにちは', '2023/08/21'),
     Tweet('ナミ', 'banana.jpeg', 'がんばれ', '2023/08/21'),
@@ -232,8 +233,8 @@ void main() {
 
   // ツイートウィジェットのリストを生成する
   final list = ListView.builder(
-    itemCount: models.length,
-    itemBuilder: (context, index) => tweetWidget(models[index])
+    itemCount: tweetModels.length,
+    itemBuilder: (context, index) => tweetWidget(tweetModels[index])
   );
 
   // 画面
@@ -243,5 +244,12 @@ void main() {
   final app9 = MaterialApp(home: screen1);
 
   // 起動
-  runApp(app9);
+  // runApp(app9);
+
+  // ******************************************
+  // ** ページ遷移 **
+  // go_routerを使用した例
+  const app10 = App();
+  usePathUrlStrategy();
+  runApp(app10);
 }
