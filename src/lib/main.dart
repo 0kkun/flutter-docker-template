@@ -4,6 +4,7 @@ import 'package:logger/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:workspace/models/tweet.dart';
 import 'package:workspace/screens/sample_screen.dart';
+import 'package:workspace/widjets/side_menu.dart';
 import 'package:workspace/widjets/tweet_widjet.dart';
 import 'package:workspace/app.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
@@ -249,7 +250,49 @@ void main() {
   // ******************************************
   // ** ページ遷移 **
   // go_routerを使用した例
-  const app10 = App();
-  usePathUrlStrategy();
-  runApp(app10);
+  // const app10 = App();
+  // usePathUrlStrategy();
+  // runApp(app10);
+
+  // ******************************************
+  // ** ドロワー **
+  final appBar = AppBar(
+    title: const Text('appBar'),
+  );
+
+  const drawer = Drawer(
+    child: SideMenu(),
+  );
+
+  const endDrawer = Drawer(
+    child: SideMenu(),
+  );
+
+  const body = Center(
+    child: Text('body'),
+  );
+
+  // フローティングアクションボタン (FAB)
+  final fab = FloatingActionButton(
+    onPressed: () {
+      debugPrint('FAB が押されました');
+    },
+    child: const Text('FAB'),
+  );
+
+  final scaffold = Scaffold(
+    appBar: appBar, // アップバー
+    drawer: drawer, // ドロワー 左側に置く
+    // endDrawer: endDrawer, // エンドドロワー。右側に置きたい時はこれ
+    floatingActionButton: fab, // フローティングアクションボタン (FAB)
+    body: body, // ボディ
+  );
+
+  final app11 = MaterialApp(
+    // 右上の「DEBUG」という文字が消せる
+    debugShowCheckedModeBanner: false,
+    home: scaffold,
+  );
+
+  runApp(app11);
 }
