@@ -23,4 +23,14 @@ final GoRouter routerConfig = GoRouter(
       builder: (BuildContext context, GoRouterState state) => const PageC(),
     ),
   ],
+
+  // 遷移ページがないなどのエラーが発生した時に、このページに行く
+  errorPageBuilder: (context, state) => MaterialPage(
+    key: state.pageKey,
+    child: Scaffold(
+      body: Center(
+        child: Text(state.error.toString()),
+      ),
+    ),
+  ),
 );
