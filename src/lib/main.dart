@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workspace/screens/root.dart';
 import 'package:workspace/widjets/banana_counter.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -294,5 +295,13 @@ void main() {
     home: scaffold,
   );
 
-  runApp(app11);
+  // runApp(app11);
+
+  // ******************************************
+  // ** ボトムナビゲーションバー **
+  const app12 = MaterialApp(home: Root());
+
+  // プロバイダースコープでアプリを囲む
+  const scope = ProviderScope(child: app12);
+  runApp(scope);
 }
