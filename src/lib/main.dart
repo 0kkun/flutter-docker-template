@@ -12,6 +12,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:workspace/screens/toggle_screen.dart';
 import 'package:workspace/screens/checkbox_screen.dart';
 import 'package:workspace/screens/progress_screen.dart';
+import 'package:workspace/screens/freezed_screen.dart';
 
 final logger = Logger();
 
@@ -324,5 +325,11 @@ void main() {
   // ** プログレスサークル **
   const app15 = MaterialApp(home: ProgressScreen());
   const scope4 = ProviderScope(child: app15);
-  runApp(scope4);
+  // runApp(scope4);
+
+  // ******************************************
+  // ** freezed **
+  const app16 = MaterialApp(home: FreezedScreen());
+  const scope5 = ProviderScope(child: app16);
+  runApp(scope5);
 }

@@ -86,3 +86,7 @@ pub-get:
 .PHONY: pubget
 pubget:
 	cd src && fvm flutter pub get
+
+.PHONY: freezed
+freezed:
+	$(DCE) flutter bash -c "fvm flutter pub run build_runner build"

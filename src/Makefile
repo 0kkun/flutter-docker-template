@@ -1,3 +1,6 @@
+# コンテナ内でコマンドを打ちたい時に使用
+# 
+
 # **********************************
 # * Flutter Controll(In Container) *
 # **********************************
@@ -30,3 +33,7 @@ clean:
 .PHONY: pub-get
 pub-get:
 	fvm flutter pub get
+
+.PHONY: freezed
+freezed:
+	fvm flutter pub run build_runner build
