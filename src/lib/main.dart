@@ -13,6 +13,8 @@ import 'package:workspace/screens/toggle_screen.dart';
 import 'package:workspace/screens/checkbox_screen.dart';
 import 'package:workspace/screens/progress_screen.dart';
 import 'package:workspace/screens/freezed_screen.dart';
+import 'package:workspace/screens/carousel_screen.dart';
+
 
 final logger = Logger();
 
@@ -331,5 +333,10 @@ void main() {
   // ** freezed **
   const app16 = MaterialApp(home: FreezedScreen());
   const scope5 = ProviderScope(child: app16);
-  runApp(scope5);
+  // runApp(scope5);
+
+  // ******************************************
+  // ** カルーセル (横方向の移動ができる。メリーゴーランド) **
+  const app17 = MaterialApp(home: CarouselScreen());
+  runApp(app17);
 }
