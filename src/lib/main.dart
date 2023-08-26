@@ -19,7 +19,7 @@ import 'package:flutter/foundation.dart';
 import 'package:workspace/screens/google_font_screen.dart';
 import 'package:workspace/screens/accordion_screen.dart';
 import 'package:workspace/services/json_service.dart';
-import 'package:device_preview/device_preview.dart';
+import 'package:device_preview_minus/device_preview_minus.dart';
 
 
 final logger = Logger();
