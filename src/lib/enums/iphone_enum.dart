@@ -14,7 +14,7 @@ enum IPhoneVersion {
   iPhone12, // iPhone 12, 13
   iPhone12Pro, // iPhone 12 Pro, 13 Pro
   iPhone12ProMAX, // iPhone 12 Pro Max, 13 Pro Max
-  iPhone14,
+  iPhone14, // iPhone14
 }
 
 class IPhoneScreenSize {
@@ -46,6 +46,7 @@ class IPhoneScreenSize {
         return const Size(390, 844);
       default:
         // Default size for unknown versions
+        debugPrint('Not supported');
         return const Size(390, 844);
     }
   }

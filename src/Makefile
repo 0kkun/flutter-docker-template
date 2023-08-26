@@ -37,3 +37,7 @@ pub-get:
 .PHONY: freezed
 freezed:
 	fvm flutter pub run build_runner build
+
+.PHONY: riverpod
+riverpod:
+	fvm flutter pub run build_runner build --delete-conflicting-outputs
