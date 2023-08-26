@@ -20,6 +20,7 @@ import 'package:workspace/screens/google_font_screen.dart';
 import 'package:workspace/screens/accordion_screen.dart';
 import 'package:workspace/services/json_service.dart';
 import 'package:device_preview_minus/device_preview_minus.dart';
+import 'package:workspace/screens/responsive_screen.dart';
 
 
 final logger = Logger();
@@ -395,10 +396,17 @@ void main() {
   final scope20 = ProviderScope(child: app20);
 
   // android studioとかで起動すると画面が見にくくなってしまうのでwebビューの時だけ起動する
-  if (kIsWeb) {
-    final devicePreview = DevicePreview(builder: (_) => scope20);
-      runApp(devicePreview);
-  } else {
-    runApp(scope20);
-  }
+  // if (kIsWeb) {
+  //   final devicePreview = DevicePreview(builder: (_) => scope20);
+  //   runApp(devicePreview);
+  // } else {
+  //   runApp(scope20);
+  // }
+
+  // ******************************************
+  // ** レスポンシブ **
+  const app21 = MaterialApp(home: ResponsiveScreen());
+  const scope21 = ProviderScope(child: app21);
+  final devicePreview21 = DevicePreview(builder: (_) => scope21);
+  runApp(devicePreview21);
 }
