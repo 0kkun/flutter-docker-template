@@ -9,6 +9,7 @@ environment:
   sdk: '>=3.0.5 <4.0.0'
 
 dependencies:
+  google_fonts: ^5.1.0
   flutter:
     sdk: flutter
   logger: ^1.1.0
@@ -33,4 +34,5 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+    - assets/google_fonts/
   uses-material-design: true

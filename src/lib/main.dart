@@ -19,6 +19,8 @@ import 'package:flutter/services.dart'; // これを書くとStubが使える
 import 'package:workspace/models/vegetable/vegetable.dart';
 import 'package:workspace/models/pack/pack.dart'; 
 import 'package:workspace/models/recipe/recipe.dart';
+import 'package:flutter/foundation.dart';
+import 'package:workspace/screens/google_font_screen.dart';
 
 
 final logger = Logger();
@@ -347,8 +349,25 @@ void main() {
 
   // ******************************************
   // ** jsonの扱い **
-  test5();
-  runApp(app17);
+  // test5();
+  // runApp(app17);
+
+  // ******************************************
+  // ** google font **
+  // OFL を守るために このコードが必要
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString(
+      'google_fonts/OFL.txt',
+    );
+    yield LicenseEntryWithLineBreaks(
+      ['google_fonts'],
+      license,
+    );
+  });
+
+  const app18 = MaterialApp(home: GoogleFontPage());
+
+  runApp(app18);
 }
 
   // レベル1 (JSONを受け取る)
