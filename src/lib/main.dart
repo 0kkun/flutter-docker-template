@@ -19,6 +19,7 @@ import 'package:flutter/foundation.dart';
 import 'package:workspace/screens/google_font_screen.dart';
 import 'package:workspace/screens/accordion_screen.dart';
 import 'package:workspace/services/json_service.dart';
+import 'package:device_preview/device_preview.dart';
 
 
 final logger = Logger();
@@ -371,6 +372,33 @@ void main() {
 
   // アプリ
   const app19 = MaterialApp(home: AccordionScreen());
+  // runApp(app19);
 
-  runApp(app19);
+  // ******************************************
+  // ** デバイスプレビュー **
+
+  const devicePreviewBody = Center(
+    child: Text('body'),
+  );
+
+  final devicePreviewSc = Scaffold(
+    appBar: appBar, // アップバー
+    drawer: drawer, // ドロワー 左側に置く
+    floatingActionButton: fab, // フローティングアクションボタン (FAB)
+    body: devicePreviewBody, // ボディ
+  );
+
+  final app20 = MaterialApp(
+    home: devicePreviewSc,
+  );
+
+  final scope20 = ProviderScope(child: app20);
+
+  // android studioとかで起動すると画面が見にくくなってしまうのでwebビューの時だけ起動する
+  if (kIsWeb) {
+    final devicePreview = DevicePreview(builder: (_) => scope20);
+      runApp(devicePreview);
+  } else {
+    runApp(scope20);
+  }
 }
