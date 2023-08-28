@@ -34,10 +34,7 @@ clean:
 pub-get:
 	fvm flutter pub get
 
-.PHONY: freezed
-freezed:
-	fvm flutter pub run build_runner build
-
-.PHONY: riverpod
-riverpod:
+# riverpod、freezed、envied全て同じコマンド
+.PHONY: build-runner
+build-runner:
 	fvm flutter pub run build_runner build --delete-conflicting-outputs

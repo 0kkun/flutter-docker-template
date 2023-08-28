@@ -22,6 +22,7 @@ import 'package:workspace/services/json_service.dart';
 import 'package:device_preview_minus/device_preview_minus.dart';
 import 'package:workspace/screens/responsive_screen.dart';
 import 'package:workspace/screens/dropdown_screen.dart';
+import 'package:workspace/env/env.dart';
 
 
 final logger = Logger();
@@ -415,5 +416,17 @@ void main() {
   // ** ドロップダウン **
   const app22 = MaterialApp(home: DropdownScreen());
   const scope22 = ProviderScope(child: app22);
-  runApp(scope22);
+  // runApp(scope22);
+
+  // ******************************************
+  // ** Env **
+    const app23 = MaterialApp(
+    home: Scaffold(
+      body: Center(
+        child: Text(Env.appEnv)
+      ),
+    ),
+  );
+
+  runApp(app23);
 }

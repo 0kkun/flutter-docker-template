@@ -25,15 +25,17 @@ dependencies:
   device_preview_minus: ^1.0.0 # こっちを使う
   cupertino_icons: ^1.0.2
   json_annotation: ^4.8.1
+  envied: ^0.3.0+3
 
 dev_dependencies:
-  freezed: ^2.4.2
+  freezed: ^2.4.1
   build_runner: ^2.4.6
   flutter_test:
     sdk: flutter
   json_serializable: ^6.7.1
   riverpod_generator: ^2.2.6
   flutter_lints: ^2.0.0
+  envied_generator: ^0.3.0+3
 
 flutter:
   assets:
