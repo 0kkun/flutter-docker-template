@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workspace/screens/root.dart';
+import 'package:workspace/screens/stack_screen.dart';
 import 'package:workspace/widjets/banana_counter.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -427,6 +428,12 @@ void main() {
       ),
     ),
   );
+  // runApp(app23);
 
-  runApp(app23);
+  // ******************************************
+  // ** Stack **
+  const app24 = MaterialApp(
+    home: StackScreen(),
+  );
+  runApp(app24);
 }
